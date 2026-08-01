@@ -1,5 +1,11 @@
 # Stowage
 
+<img
+  width="450"
+  alt="Burdened"
+  src="https://i.imgur.com/js9t8yI.png"
+/>
+
 Stowage is a universal code mod for Vintage Story that changes held-bag
 capacity through item-code patterns. The server owns the configuration and
 sends the effective bag definitions to every client.
@@ -13,6 +19,11 @@ sends the effective bag definitions to every client.
 F01 supports vanilla bags and third-party bags built on Vintage Story's
 standard held-bag behavior. Compatibility is detected from that behavior, not
 from a hardcoded list of mod ids.
+
+<img
+  width="880"
+  src="https://i.imgur.com/4tlhxDT.png"
+/>
 
 ## Configuration
 
