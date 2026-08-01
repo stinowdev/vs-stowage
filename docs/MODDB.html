@@ -1,0 +1,104 @@
+<h2>Stowage</h2>
+<p><img src="https://i.imgur.com/js9t8yI.png" alt="" width="400" height="267" /></p>
+<h3>Choose the space. Keep the contents</h3>
+<p>Stowage changes held-bag capacity through item-code patterns. The server owns the configuration and every client
+  receives the same bag definitions.</p>
+<p>It does not guess compatibility from a list of mod names. Instead, it works with vanilla bags and bags from other
+  mods when they use Vintage Story's standard held-bag behavior.</p>
+<p>The idea is simple: choose how much a bag can carry without putting the contents of existing bags at risk.</p>
+<h3>What Stowage changes</h3>
+<ul>
+  <li><strong>Capacity by item code:</strong> set one bag, a family such as <code>game:backpack-*</code>, or bags from
+    another asset domain to the slot count you want.</li>
+  <li><strong>Bags from other mods:</strong> standard held bags are detected by capability rather than mod id, so a
+    compatible bag mod needs no dedicated Stowage integration.</li>
+  <li><strong>Existing bag support:</strong> bags grow when their contents are next loaded. Existing items stay in place
+    and new slots start empty.</li>
+  <li><strong>Safe reductions:</strong> when a bag becomes smaller, Stowage compacts the slots that remain, moves
+    overflow into valid player storage and other equipped bags, then drops anything that still does not fit. Items are
+    never intentionally deleted.</li>
+  <li><strong>Dormant bags stay readable:</strong> an oversized bag keeps its old layout until it is equipped or opened.
+    No slot is hidden before its contents can be migrated safely.</li>
+  <li><strong>Useful diagnostics:</strong> startup logs report matched rules, changed bag types, configured reductions,
+    unmatched patterns, and custom bag implementations that were left unchanged.</li>
+</ul>
+<p>&nbsp;</p>
+<p><img src="https://i.imgur.com/4tlhxDT.png" alt="" width="783" height="399" /></p>
+<p><em>Balance the difficulty of the inventory slots management aspect of the game.</em></p>
+<h3>Safe resizing</h3>
+<p>New bags use the configured capacity immediately. Existing bags are handled when they become active.</p>
+<p>An already-equipped bag is resized when its player finishes joining the world. Equipping another bag also triggers
+  the check. A ground-stored or entity-attached bag is resized when opened.</p>
+<p>If the remaining slots and the player's other storage are full, overflow is dropped near the player or the opened
+  bag. The smaller layout is saved only after every item has somewhere to go.</p>
+<h3>Configuration</h3>
+<p>Stowage creates the following server-owned file on first run:</p>
+<p><code>%APPDATA%\VintagestoryData\ModConfig\stowage.json</code></p>
+<p>After editing the file, restart the dedicated server or reopen the singleplayer world.</p>
+<table style="width: 72.1027%; border-collapse: collapse; border: 2px solid #6b563c;" border="1" cellpadding="6">
+  <thead>
+    <tr style="background-color: #e3d7c2;">
+      <th style="width: 27.1457%; text-align: left; border-color: #6b563c;" scope="col">Setting</th>
+      <th style="width: 13.4731%; text-align: left; border-color: #6b563c;" scope="col">Default</th>
+      <th style="width: 59.3812%; text-align: left; border-color: #6b563c;" scope="col">Effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="width: 27.1457%;"><code>BagCapacityOverrides</code></td>
+      <td style="width: 13.4731%;"><code>{}</code></td>
+      <td style="width: 59.3812%;">Maps item-code patterns to capacities from 1 through 256</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p>Patterns accept <code>*</code> wildcards. An entry without a domain is treated as <code>game:</code>. Rules are
+  checked in file order, and the first match wins. An empty map keeps the capacities supplied by the game and other
+  mods.</p>
+<table style="width: 72.1027%; border-collapse: collapse; background-color: #f4efe4; border: 1px solid #6b563c;"
+  cellpadding="12">
+  <tbody>
+    <tr>
+      <td>
+        <p style="margin: 0;"><code>"BagCapacityOverrides": {</code></p>
+        <p style="margin: 0;"><code>&nbsp;&nbsp;"game:linensack": 10,</code></p>
+        <p style="margin: 0;"><code>&nbsp;&nbsp;"game:basket-*": 8,</code></p>
+        <p style="margin: 0;"><code>&nbsp;&nbsp;"othermod:rucksack-*": 18</code></p>
+        <p style="margin: 0;"><code>}</code></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3>Compatibility and installation</h3>
+<ul>
+  <li>Built for <strong>Vintage Story 1.22.3</strong>.</li>
+  <li>Required on both the client and server. Clients and servers should use the same Stowage version.</li>
+  <li>Standalone, with no required mod dependencies.</li>
+  <li>Supports bags using the standard Vintage Story held-bag behavior.</li>
+  <li>Custom bag implementations that ignore the standard capacity attribute are left unchanged and reported in the
+    server log.</li>
+  <li>Stowage does not resize placed chests, vessels, crates, or arbitrary block inventories.</li>
+</ul>
+<p>&nbsp;</p>
+<p>Other Vintage Story patch versions remain unverified until their bag interaction paths are checked and tested.</p>
+<p>&nbsp;</p>
+<p>Download the matching zip from the <strong>Files</strong> tab or use 1-click install. For a manual installation,
+  place the zip in the Vintage Story <code>Mods</code> directory without unpacking it, then restart the game or server.
+</p>
+<h3>More information</h3>
+<ul>
+  <li><a href="https://github.com/stinowdev/vs-stowage" target="_blank" rel="noopener">Source and full documentation</a>
+  </li>
+  <li><a href="https://github.com/stinowdev/vs-stowage/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Release
+      history</a></li>
+  <li><a href="https://github.com/stinowdev/vs-stowage/blob/main/FEATURES.md" target="_blank" rel="noopener">Feature
+      status and design decisions</a></li>
+  <li><a href="https://github.com/stinowdev/vs-stowage/issues" target="_blank" rel="noopener">Bug reports and feature
+      requests</a></li>
+  <li><a href="https://ko-fi.com/stinow" target="_blank" rel="noopener noreferrer">Support development on Ko-fi</a></li>
+</ul>
+<p>&nbsp;</p>
+<p><em>Stowage is actively developed. The public mod remains free.</em></p>
+<p>&nbsp;</p>
+<p style="color: #e4ddc9;"><em>Keywords: Storage, Inventory, Bag, Backpack, Basket, Capacity, Slots, Configuration,
+    Server, Compatibility, Modding, Quality of Life</em></p>

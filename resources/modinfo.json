@@ -1,0 +1,15 @@
+{
+  "type": "code",
+  "modid": "stowage",
+  "name": "Stowage",
+  "authors": [ "stinow" ],
+  "description": "Configure held-bag storage capacity by item-code pattern.",
+  "version": "0.1.0",
+  "side": "universal",
+  "requiredOnClient": true,
+  "requiredOnServer": true,
+  "networkVersion": "1.0.0",
+  "dependencies": {
+    "game": "1.22.3"
+  }
+}

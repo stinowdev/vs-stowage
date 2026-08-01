@@ -1,0 +1,17 @@
+# Build output
+bin/
+obj/
+Releases/
+
+# IDE / editor
+.vs/
+.idea/
+*.user
+*.suo
+
+# Local release verification
+/docs/TESTING.md
+
+# OS
+Thumbs.db
+.DS_Store
