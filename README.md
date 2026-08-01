@@ -10,6 +10,8 @@ Stowage is a universal code mod for Vintage Story that changes held-bag
 capacity through item-code patterns. The server owns the configuration and
 sends the effective bag definitions to every client.
 
+You can also check the [original ModDB page](https://mods.vintagestory.at/stowage).
+
 ## Features
 
 | Feature | Available since |
